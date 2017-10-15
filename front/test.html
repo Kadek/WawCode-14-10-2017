@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Test</title>
+		<meta name="description" content="The HTML5 Herald">
+		<meta name="author" content="test">
+
+		<script
+			  src="https://code.jquery.com/jquery-3.2.1.js"
+			  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+			  crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  		<link rel="stylesheet" type="text/css" href="css/test.css">
+  		<link rel="stylesheet" type="text/css" href="theme.css">
+
+		<script src="https://unpkg.com/vue"></script>
+	    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD43eMF2i69aOewAW6zJDqTzQ2u5pamNtY"></script>
+
+	</head>
+
+	<body>
+		<section id="wrapper">
+			<aside id="sideMenuBackground">
+				<nav id="displayPartNav">
+					<button class="btn btn-info" v-on:click="showInfo"> Film </button>
+					<button class="btn btn-info" v-on:click="showMap"> Mapa </button>
+					<div class="checkbox">
+					  <label><input id="importantOnly" type="checkbox" value=""><i class='material-icons'>feedback</i></label>
+					</div>
+					
+				</nav>
+				<nav id="sideMenu">
+					<ul class="list-group">
+						<evidence-list-item
+							v-for="evidence in evidenceList"
+							v-bind:evidence="evidence"
+							v-bind:key="evidence.date"
+							v-on:click.native="selectItem"
+							v-on:keyup.space.native="toggleImportant">
+						</evidence-list-item>
+					</ul>
+				</nav>
+			</aside>
+
+			<article id="displayPart">
+				<section id="evidenceView" v-if="displayView">
+					<video width="320" height="240" controls>
+					 	<source src="static/movie.mp4" type="video/mp4">
+						Your browser does not support the video tag.
+					</video>
+					<div id="specificMap"></div>
+				</section>
+
+				<section id="mapView" v-if="displayView">
+					<div id="generalMap"></div>
+				</section>
+
+			</article>
+		</section>
+
+		<script src="js/mapFun.js"></script>
+		<script src="js/evidenceFun.js"></script>
+
+	</body>
+</html>
